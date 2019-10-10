@@ -2,9 +2,24 @@
 
 import math
 
+# Time => O(n), where n is recipe keys
+# Space => O(1)
+
 
 def recipe_batches(recipe, ingredients):
-    pass
+    actual_batch_count = math.inf
+
+    for name, amount in recipe.items():
+        ingredient_amount = ingredients.get(name)
+
+        if not ingredient_amount:
+            actual_batch_count = 0
+            break
+
+        batch_count = ingredient_amount // amount
+        actual_batch_count = batch_count if actual_batch_count > batch_count else actual_batch_count
+
+    return actual_batch_count
 
 
 if __name__ == '__main__':
